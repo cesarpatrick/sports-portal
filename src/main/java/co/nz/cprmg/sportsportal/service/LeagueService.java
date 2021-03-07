@@ -16,7 +16,7 @@ public class LeagueService {
 
     RestTemplate restTemplate = new RestTemplate();
 
-    public LeagueList getAllSoccerLeagues(){
+    public LeagueList getAllLeaguesBySport(String sportName){
         ResponseEntity<LeagueList> response =
                 restTemplate.getForEntity(
                         SystemConstants.ALL_LEAGUES_URL.getValue(),
@@ -26,7 +26,7 @@ public class LeagueService {
 
         if(response.getBody() != null) {
             for (League league : response.getBody().getLeagues()) {
-                if (league.getStrSport().equalsIgnoreCase(SystemConstants.SOCCER.getValue())) {
+                if (league.getStrSport().equalsIgnoreCase(sportName)) {
                     leagueList.add(league);
                 }
             }
@@ -42,138 +42,4 @@ public class LeagueService {
                         Leagues.class);
         return response.getBody();
     }
-
-    public LeagueList getAllMotorSportLeagues(){
-        ResponseEntity<LeagueList> response =
-                restTemplate.getForEntity(
-                        SystemConstants.ALL_LEAGUES_URL.getValue(),
-                        LeagueList.class);
-
-        List<League> leagueList = new ArrayList<>();
-
-        if(response.getBody() != null) {
-            for (League league : response.getBody().getLeagues()) {
-                if (league.getStrSport().equalsIgnoreCase(SystemConstants.MOTORSPORTS.getValue().toUpperCase())) {
-                    leagueList.add(league);
-                }
-            }
-        }
-
-        return new LeagueList(leagueList);
-    }
-
-    public LeagueList getAllFightingLeagues(){
-        ResponseEntity<LeagueList> response =
-                restTemplate.getForEntity(
-                        SystemConstants.ALL_LEAGUES_URL.getValue(),
-                        LeagueList.class);
-
-        List<League> leagueList = new ArrayList<>();
-
-        if(response.getBody() != null) {
-            for (League league : response.getBody().getLeagues()) {
-                if (league.getStrSport().equalsIgnoreCase(SystemConstants.FIGHTING.getValue().toUpperCase())) {
-                    leagueList.add(league);
-                }
-            }
-        }
-
-        return new LeagueList(leagueList);
-    }
-
-    public LeagueList getAllBaseballLeagues(){
-        ResponseEntity<LeagueList> response =
-                restTemplate.getForEntity(
-                        SystemConstants.ALL_LEAGUES_URL.getValue(),
-                        LeagueList.class);
-
-        List<League> leagueList = new ArrayList<>();
-
-        if(response.getBody() != null) {
-            for (League league : response.getBody().getLeagues()) {
-                if (league.getStrSport().equalsIgnoreCase(SystemConstants.BASEBALL.getValue().toUpperCase())) {
-                    leagueList.add(league);
-                }
-            }
-        }
-
-        return new LeagueList(leagueList);
-    }
-
-    public LeagueList getAllAmericanFootballLeagues(){
-        ResponseEntity<LeagueList> response =
-                restTemplate.getForEntity(
-                        SystemConstants.ALL_LEAGUES_URL.getValue(),
-                        LeagueList.class);
-
-        List<League> leagueList = new ArrayList<>();
-
-        if(response.getBody() != null) {
-            for (League league : response.getBody().getLeagues()) {
-                if (league.getStrSport().equalsIgnoreCase(SystemConstants.AMERICAN_FOOTBALL.getValue().toUpperCase())) {
-                    leagueList.add(league);
-                }
-            }
-        }
-
-        return new LeagueList(leagueList);
-    }
-
-    public LeagueList getAllIceHockeyLeagues(){
-        ResponseEntity<LeagueList> response =
-                restTemplate.getForEntity(
-                        SystemConstants.ALL_LEAGUES_URL.getValue(),
-                        LeagueList.class);
-
-        List<League> leagueList = new ArrayList<>();
-
-        if(response.getBody() != null) {
-            for (League league : response.getBody().getLeagues()) {
-                if (league.getStrSport().equalsIgnoreCase(SystemConstants.ICE_HOCKEY.getValue().toUpperCase())) {
-                    leagueList.add(league);
-                }
-            }
-        }
-
-        return new LeagueList(leagueList);
-    }
-
-    public LeagueList getAllGolfLeagues(){
-        ResponseEntity<LeagueList> response =
-                restTemplate.getForEntity(
-                        SystemConstants.ALL_LEAGUES_URL.getValue(),
-                        LeagueList.class);
-
-        List<League> leagueList = new ArrayList<>();
-
-        if(response.getBody() != null) {
-            for (League league : response.getBody().getLeagues()) {
-                if (league.getStrSport().equalsIgnoreCase(SystemConstants.GOLF.getValue().toUpperCase())) {
-                    leagueList.add(league);
-                }
-            }
-        }
-
-        return new LeagueList(leagueList);
-    }
-
-    public LeagueList getAllBasketballLeagues(){
-        ResponseEntity<LeagueList> response =
-                restTemplate.getForEntity(
-                        SystemConstants.ALL_LEAGUES_URL.getValue(),
-                        LeagueList.class);
-
-        List<League> leagueList = new ArrayList<>();
-
-        if(response.getBody() != null) {
-            for (League league : response.getBody().getLeagues()) {
-                if (league.getStrSport().equalsIgnoreCase(SystemConstants.BASKETBALL.getValue().toUpperCase())) {
-                    leagueList.add(league);
-                }
-            }
-        }
-
-        return new LeagueList(leagueList);
-    }
-
 }
