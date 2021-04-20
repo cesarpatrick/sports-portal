@@ -2,7 +2,9 @@ package co.nz.cprmg.sportsportal.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="user")
@@ -23,7 +25,7 @@ public class User {
     private String password;
 
     @Column
-    private String login;
+    private String username;
 
     @OneToMany(
             mappedBy = "user",
@@ -32,6 +34,21 @@ public class User {
     )
     private List<Favourite> favourites = new ArrayList<>();
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    public User() {
+    }
+
+    public User(String username, String email, String password,String name) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;
@@ -65,11 +82,19 @@ public class User {
         this.password = password;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String login) {
+        this.username = login;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

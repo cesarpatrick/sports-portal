@@ -15,13 +15,21 @@ public class UserController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public User getTeamsByLeague(@PathVariable User user) {
+    public User save(@RequestBody User user) {
         return null;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/login", method = RequestMethod.POST,
+                    produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public User login(@RequestBody User user) {
-        return userService.getUserByLoginByPassword(user.getLogin(), user.getPassword());
+
+        User userReturn = new User();
+
+        if(user != null){
+            userReturn = userService.getUserByLoginByPassword(user.getUsername(), user.getPassword());
+        }
+
+        return userReturn;
     }
 
 }

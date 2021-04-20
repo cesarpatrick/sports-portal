@@ -19,7 +19,7 @@ public class LeagueController {
     }
 
     @RequestMapping(value = "/{sportName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public LeagueList getTeamsByLeague(@PathVariable String sportName) {
+    public LeagueList getLeaguesBySport(@PathVariable String sportName) {
         return leagueService.getAllLeaguesBySport(sportName);
     }
 
