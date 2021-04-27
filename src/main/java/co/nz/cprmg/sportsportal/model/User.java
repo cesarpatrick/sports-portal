@@ -1,5 +1,7 @@
 package co.nz.cprmg.sportsportal.model;
 
+import co.nz.cprmg.sportsportal.service.UserDetailsImpl;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -41,6 +43,12 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
     public User() {
+    }
+
+    public User (UserDetailsImpl user){
+        this.username = user.getUsername();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
     }
 
     public User(String username, String email, String password,String name) {
@@ -96,5 +104,13 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<Favourite> getFavourites() {
+        return favourites;
+    }
+
+    public void setFavourites(List<Favourite> favourites) {
+        this.favourites = favourites;
     }
 }

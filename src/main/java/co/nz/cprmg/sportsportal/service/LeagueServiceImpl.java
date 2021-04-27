@@ -4,6 +4,7 @@ import co.nz.cprmg.sportsportal.config.SystemConstants;
 import co.nz.cprmg.sportsportal.model.League;
 import co.nz.cprmg.sportsportal.model.LeagueList;
 import co.nz.cprmg.sportsportal.model.Leagues;
+import co.nz.cprmg.sportsportal.model.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -43,5 +44,23 @@ public class LeagueServiceImpl  implements  LeagueService{
                         SystemConstants.GET_LEAGUE_DETAILS_URL.getValue() + idLeague,
                         Leagues.class);
         return response.getBody();
+    }
+
+    @Override
+    public LeagueList getAllLeagues(){
+        ResponseEntity<LeagueList> response =
+                restTemplate.getForEntity(
+                        SystemConstants.ALL_LEAGUES_URL.getValue(),
+                        LeagueList.class);
+
+        List<League> leagueList = new ArrayList<>();
+
+        if(response.getBody() != null) {
+            for (League league : response.getBody().getLeagues()) {
+                    leagueList.add(league);
+            }
+        }
+
+        return new LeagueList(leagueList);
     }
 }

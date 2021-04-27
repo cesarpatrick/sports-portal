@@ -6,6 +6,6 @@ import co.nz.cprmg.sportsportal.model.Leagues;
 public interface LeagueService {
 
     LeagueList getAllLeaguesBySport(String sportName);
-
     Leagues getLeagueDetail(Integer idLeague);
+    LeagueList getAllLeagues();
 }

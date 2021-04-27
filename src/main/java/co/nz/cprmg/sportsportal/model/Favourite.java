@@ -12,7 +12,7 @@ public class Favourite {
     private Integer id;
 
     @Column
-    private Integer id_club;
+    private Integer id_league;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
@@ -25,16 +25,12 @@ public class Favourite {
         this.id = id;
     }
 
-    public Integer getId_club() {
-        return id_club;
+    public Integer getId_league() {
+        return id_league;
     }
 
-    public void setId_club(Integer id_club) {
-        this.id_club = id_club;
-    }
-
-    public User getUser() {
-        return user;
+    public void setId_league(Integer id_league) {
+        this.id_league = id_league;
     }
 
     public void setUser(User user) {
